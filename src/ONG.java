@@ -1,6 +1,7 @@
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import Estado.Estado;
 
 public class ONG {
     private String razonSocial;
@@ -64,7 +65,7 @@ public class ONG {
 
     public void mostrarResultadoFecha(LocalDate fecha) {
         int cobradas = 0;
-        int rechazada = 0;
+        int rechazadas = 0;
         int pendientes = 0;
         int montoTotal = 0;
         int max = 0;
@@ -73,10 +74,27 @@ public class ONG {
 
         for (Donacion donacion : donaciones) {
             if (donacion.getFecha().isAfter(fecha)) {
-                if(donacion.getEstado().equals("ESTADO") {
-                    
+                if(donacion.getEstado() == Estado.COBRADA) {
+                    cobradas++;
+                    montoTotal += donacion.getMonto();
+                    if (max < donacion.getMonto()) {
+                        max = donacion.getMonto();
+                    }
+                    if (min > donacion.getMonto()) {
+                        min = donacion.getMonto();
                 }
+            } else if (donacion.getEstado() == Estado.RECHAZADA) {
+                rechazadas++;
+            } else if (donacion.getEstado() == Estado.PENDIENTE) {
+                pendientes++;
             }
+        }
+        promedio = montoTotal / cobradas;
+        
+        System.out.println("Estado de Resultado de " + razonSocial + " al " + fecha.toString());
+        System.out.println(" - Cobradas: " + cobradas + "\n - Rechazadas: " + rechazadas +
+                            "\n - Pendientes: " + pendientes + "\n - Monto total: " + montoTotal +
+                            "\n - Monto máximo: " + max + "\n - Monton mínimo: " + min + "\n - Monto medio: " + promedio);
         }
     }
 }

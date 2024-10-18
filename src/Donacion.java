@@ -1,12 +1,10 @@
 import java.time.LocalDate;
+import Estado.Estado;
 
 public class Donacion {
     private LocalDate fecha;
     private int monto;
     private Donante donante;
-    private enum Estado {
-        PENDIENTE, RECHAZADA, COBRADA
-    }
     private Estado estado;
     private int id;
     private static int contadorId;
