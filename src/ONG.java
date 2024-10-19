@@ -68,12 +68,12 @@ public class ONG {
         int rechazadas = 0;
         int pendientes = 0;
         int montoTotal = 0;
-        int max = 0;
-        int min = 0;
+        int max = Integer.MIN_VALUE;
+        int min = Integer.MAX_VALUE;
         float promedio;
 
         for (Donacion donacion : donaciones) {
-            if (donacion.getFecha().isAfter(fecha)) {
+            if (!donacion.getFecha().isAfter(fecha)) {
                 if(donacion.getEstado() == Estado.COBRADA) {
                     cobradas++;
                     montoTotal += donacion.getMonto();
@@ -88,13 +88,16 @@ public class ONG {
             } else if (donacion.getEstado() == Estado.PENDIENTE) {
                 pendientes++;
             }
+        }}
+        if (cobradas != 0) {
+            promedio = montoTotal / cobradas;
+        } else {
+            promedio = 0;
         }
-        promedio = montoTotal / cobradas;
         
         System.out.println("Estado de Resultado de " + razonSocial + " al " + fecha.toString());
         System.out.println(" - Cobradas: " + cobradas + "\n - Rechazadas: " + rechazadas +
-                            "\n - Pendientes: " + pendientes + "\n - Monto total: " + montoTotal +
-                            "\n - Monto máximo: " + max + "\n - Monton mínimo: " + min + "\n - Monto medio: " + promedio);
-        }
+                            "\n - Pendientes: " + pendientes + "\n - Monto total: $ " + montoTotal +
+                            "\n - Monto máximo: $ " + max + "\n - Monton mínimo: $ " + min + "\n - Monto medio: $ " + promedio);
     }
 }
