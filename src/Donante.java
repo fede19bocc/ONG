@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class Donante {
     private String nombre;
     private String apellido;
@@ -28,27 +30,39 @@ public class Donante {
         return result;
     }
 
+    // @Override
+    // public boolean equals(Object obj) {
+    //     if (this == obj)
+    //         return true;
+    //     if (obj == null)
+    //         return false;
+    //     if (getClass() != obj.getClass())
+    //         return false;
+    //     Donante other = (Donante) obj;
+    //     if (nombre == null) {
+    //         if (other.nombre != null)
+    //             return false;
+    //     } else if (!nombre.equals(other.nombre))
+    //         return false;
+    //     if (apellido == null) {
+    //         if (other.apellido != null)
+    //             return false;
+    //     } else if (!apellido.equals(other.apellido))
+    //         return false;
+    //     return true;
+    // }
+
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        Donante other = (Donante) obj;
-        if (nombre == null) {
-            if (other.nombre != null)
-                return false;
-        } else if (!nombre.equals(other.nombre))
-            return false;
-        if (apellido == null) {
-            if (other.apellido != null)
-                return false;
-        } else if (!apellido.equals(other.apellido))
-            return false;
+public boolean equals(Object obj) {
+    if (this == obj)
         return true;
-    }
+    if (obj == null || getClass() != obj.getClass())
+        return false;
+    Donante other = (Donante) obj;
+    return Objects.equals(nombre, other.nombre) && 
+           Objects.equals(apellido, other.apellido);
+}
+
 
     @Override
     public String toString() {
