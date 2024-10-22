@@ -23,11 +23,14 @@ public class Donante {
 
     @Override
     public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
-        result = prime * result + ((apellido == null) ? 0 : apellido.hashCode());
-        return result;
+        // final int prime = 31;
+        // int result = 1;
+        // result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
+        // result = prime * result + ((apellido == null) ? 0 : apellido.hashCode());
+        // return result;
+
+        // version simplificada
+        return Objects.hash(nombre, apellido);
     }
 
     // @Override
@@ -52,6 +55,7 @@ public class Donante {
     //     return true;
     // }
 
+    // version mas leible
     @Override
 public boolean equals(Object obj) {
     if (this == obj)
